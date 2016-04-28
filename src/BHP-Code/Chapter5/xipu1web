@@ -1,0 +1,15 @@
+import requests
+import base64
+
+print '1'
+s = requests.Session()
+url = "http://ctf4.shiyanbar.com/web/10.php"
+
+print '2'
+r = s.get(url)
+flag = base64.decodestring(r.headers['FLAG']).split(":")[1]
+
+print '3'
+datas = {'key':flag}
+r = s.post(url,data=datas)
+print r.content
